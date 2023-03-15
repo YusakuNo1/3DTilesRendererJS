@@ -190,8 +190,12 @@ export class TilesRendererBase {
 
 			if ( tile.content.uri ) {
 
-				// tile content uri has to be interpreted relative to the tileset.json
-				tile.content.uri = new URL( tile.content.uri, tileSetDir + '/' ).toString();
+				if ( tileSetDir.startsWith( 'blob:' ) === false ) {
+
+					// tile content uri has to be interpreted relative to the tileset.json
+					tile.content.uri = new URL( tile.content.uri, tileSetDir + '/' ).toString();
+
+				}
 
 			}
 
